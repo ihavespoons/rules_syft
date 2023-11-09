@@ -25,7 +25,7 @@ syft_generate(
 """
 
 _attrs = {
-    "tarball": attr.label(allow_single_file = True, mandatory = True, allow_files = ["tar.gz", ".tar"], doc = "Label to an oci_tarball"),
+    "tarball": attr.label(allow_single_file = True, mandatory = True, doc = "Label to an oci_tarball"),
     "type": attr.string(values = ["cyclonedx-json", "cyclonedx-xml", "syft-json", "syft-text", "spdx-tag-value", "spdx-json", "github-json"], mandatory = True, doc = "Type of sbom. Acceptable values are (cyclonedx-json|cyclonedx-xml|syft-json|syft-text|spdx-tag-value|spdx-json|github-json)"),
     "_generate_sh_tpl": attr.label(default = "generate.sh.tpl", allow_single_file = True),
     "_windows_constraint": attr.label(default = "@platforms//os:windows"),
