@@ -21,10 +21,6 @@ def _syft_repo_impl(repository_ctx):
     )
     repository_ctx.download_and_extract(
         url = url,
-        stripPrefix = "syft_{version}_{platform}".format(
-            version = repository_ctx.attr.syft_version.lstrip("v"),
-            platform = platform,
-        ),
         sha256 = SYFT_VERSIONS[repository_ctx.attr.syft_version][platform],
     )
     repository_ctx.file("BUILD.bazel", SYFT_BUILD_TMPL)
