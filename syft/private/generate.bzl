@@ -1,6 +1,6 @@
 "Implementation details for generate rule"
 
-load("//oci/private:util.bzl", "util")
+load("//syft/private:util.bzl", "util")
 
 _DOC = """Generate SBOM for an oci_tarball using syft binary at a remote registry.
 
