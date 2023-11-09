@@ -25,7 +25,7 @@ def _syft_repo_impl(repository_ctx):
             version = repository_ctx.attr.syft_version.lstrip("v"),
             platform = platform,
         ),
-        integrity = SYFT_VERSIONS[repository_ctx.attr.syft_version][platform],
+        sha256 = SYFT_VERSIONS[repository_ctx.attr.syft_version][platform],
     )
     repository_ctx.file("BUILD.bazel", SYFT_BUILD_TMPL)
 
