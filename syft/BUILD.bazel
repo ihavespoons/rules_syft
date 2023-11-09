@@ -9,7 +9,7 @@ bzl_library(
     name = "defs",
     srcs = ["defs.bzl"],
     visibility = ["//visibility:public"],
-    deps = ["//rules_syft/syft/private:generate"],
+    deps = ["//syft/private:generate"],
 )
 
 bzl_library(
@@ -17,7 +17,7 @@ bzl_library(
     srcs = ["repositories.bzl"],
     visibility = ["//visibility:public"],
     deps = [
-        "//rules_syft/syft/private:versions",
+        "//syft/private:versions",
     ],
 )
 
