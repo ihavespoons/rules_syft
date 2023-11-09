@@ -21,6 +21,8 @@ syft_generate(
 ```
 """
 
+load("//oci/private:util.bzl", "util")
+
 _attrs = {
     "tarball": attr.label(allow_single_file = True, mandatory = True, doc = "Label to an oci_tarball"),
     "type": attr.string(values = ["cyclonedx-json", "cyclonedx-xml", "syft-json", "syft-text", "spdx-tag-value", "spdx-json", "github-json"], mandatory = True, doc = "Type of sbom. Acceptable values are (cyclonedx-json|cyclonedx-xml|syft-json|syft-text|spdx-tag-value|spdx-json|github-json)"),
