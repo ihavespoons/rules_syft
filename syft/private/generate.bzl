@@ -15,7 +15,7 @@ oci_tarball(
 
 syft_generate(
     name = "generate_sbom",
-    type = "cyclonedx-json"
+    type = "cyclonedx-json",
     tarball = ":image_tarball"
 )
 ```
