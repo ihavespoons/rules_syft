@@ -59,6 +59,10 @@ def syft_generate_impl(ctx):
         progress_message = "Syft Generate %{name}",
     )
 
+    return [
+        DefaultInfo(files = depset([sbom]), executable = executable),
+    ]
+
 syft_generate = rule(
     implementation = syft_generate_impl,
     attrs = _attrs,
