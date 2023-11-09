@@ -1,4 +1,4 @@
-# Anchore's Syft for Bazel
+# Syft for Bazel
 This project extends bazel with a toolchain for the use of the Syft commandline tool from Anchore
 
 
