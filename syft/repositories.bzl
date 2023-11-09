@@ -14,7 +14,7 @@ syft_toolchain(
 """
 
 def _syft_repo_impl(repository_ctx):
-    platform = repository_ctx.attr.platform.replace("x86_64", "amd64").replace("_", "-")
+    platform = repository_ctx.attr.platform.replace("x86_64", "amd64")
     url = "https://github.com/anchore/syft/releases/download/v{version}/syft_{version}_{platform}.tar.gz".format(
         version = repository_ctx.attr.syft_version.lstrip("v"),
         platform = platform,
