@@ -30,7 +30,7 @@ _attrs = {
 def syft_generate_impl(ctx):
     syft = ctx.toolchains["@rules_syft//syft:toolchain_type"]
     tarball = ctx.file.tarball
-    sbom = ctx.actions.declare_file("{}/tarball.tar".format(ctx.label.name))
+    sbom = ctx.actions.declare_file("{}/sbom.json".format(ctx.label.name))
     executable = ctx.actions.declare_file("{}/generate.sh".format(ctx.label.name))
 
     substitutions = {
