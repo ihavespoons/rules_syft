@@ -9,4 +9,4 @@ readonly TYPE="{{type}}"
 readonly SBOM="{{sbom}}"
 
 
-exec "${SYFT}" "${TARBALL}" --output "${TYPE}" --file "${SBOM}"
+exec "${SYFT}" "${TARBALL}" --output "${TYPE}"="${SBOM}"

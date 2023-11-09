@@ -56,7 +56,7 @@ def syft_generate_impl(ctx):
         outputs = [sbom],
         tools = [syft],
         mnemonic = "SyftGenerate",
-        progress_message = "Syft Generate %{name}",
+        progress_message = "Syft Generate %{label}",
     )
 
     return [
