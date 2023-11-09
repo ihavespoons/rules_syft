@@ -1,0 +1,28 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+toolchain_type(
+    name = "toolchain_type",
+    visibility = ["//visibility:public"],
+)
+
+bzl_library(
+    name = "defs",
+    srcs = ["defs.bzl"],
+    visibility = ["//visibility:public"],
+    deps = ["//rules_syft/syft/private:generate"],
+)
+
+bzl_library(
+    name = "repositories",
+    srcs = ["repositories.bzl"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//rules_syft/syft/private:versions",
+    ],
+)
+
+bzl_library(
+    name = "toolchain",
+    srcs = ["toolchain.bzl"],
+    visibility = ["//visibility:public"],
+)
