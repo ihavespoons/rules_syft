@@ -1,6 +1,6 @@
 """Repository rules for fetching syft"""
 
-load("///syft/private:versions.bzl", "SYFT_VERSIONS")
+load("//syft/private:versions.bzl", "SYFT_VERSIONS")
 
 # buildifier: disable=bzl-visibility
 load("//syft/private:toolchains_repo.bzl", "PLATFORMS", "toolchains_repo")
