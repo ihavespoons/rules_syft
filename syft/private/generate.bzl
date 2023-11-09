@@ -1,6 +1,7 @@
 "Implementation details for generate rule"
 
 load("//syft/private:util.bzl", "util")
+load("//syft/private:mappings.bzl", "FILE_MAPPINGS")
 
 _DOC = """Generate SBOM for an oci_tarball using syft binary at a remote registry.
 
@@ -33,7 +34,7 @@ _attrs = {
 def syft_generate_impl(ctx):
     syft = ctx.toolchains["@rules_syft//syft:toolchain_type"].syft_info.binary
     tarball = ctx.file.tarball
-    sbom = ctx.actions.declare_file("{}/sbom.json".format(ctx.label.name))
+    sbom = ctx.actions.declare_file("{}/sbom.{}".format(ctx.label.name, FILE_MAPPINGS[ctx.attr.type.syft_version]))
     executable = ctx.actions.declare_file("{}/generate.sh".format(ctx.label.name))
 
     substitutions = {
