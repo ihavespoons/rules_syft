@@ -22,3 +22,9 @@ bzl_library(
     srcs = ["versions.bzl"],
     visibility = ["//syft:__subpackages__"],
 )
+
+bzl_library(
+    name = "util",
+    srcs = ["util.bzl"],
+    visibility = ["//syft:__subpackages__"],
+)
