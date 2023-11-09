@@ -37,3 +37,7 @@ if defined args (
     )
 
     return win_launcher
+
+util = struct(
+    maybe_wrap_launcher_for_windows = _maybe_wrap_launcher_for_windows,
+)
