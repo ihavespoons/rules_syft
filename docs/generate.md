@@ -8,6 +8,29 @@ load("@rules_syft//syft:defs.bzl", "syft_generate")
 syft_generate(name, tarball, type)
 ```
 
+**Note**: Syft doesn't support generating SBOM's for OCI indexes, please only pass image tarballs
+
+## Examples
+Generate an SBOM for an OCI Tarball
+
+```python
+oci_image(
+    name = "image"
+)
+
+oci_tarball(
+    name = "image_tarball",
+    image = ":image",
+    repo_tags = []
+)
+
+syft_generate(
+    name = "generate_sbom",
+    type = "cyclonedx-json",
+    tarball = ":image_tarball"
+)
+```
+
 ## Parameters
 | Name    | Description                                                                                                                | Type                                                                | Mandatory | Default |
 |:--------|:---------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------|:----------| :------------- |
