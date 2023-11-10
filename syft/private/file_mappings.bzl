@@ -1,3 +1,5 @@
+"File type mappings for syft"
+
 FILE_MAPPINGS = {
     "cyclonedx-json": "json",
     "cyclonedx-xml": "xml",

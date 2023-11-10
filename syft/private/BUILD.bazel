@@ -13,7 +13,12 @@ bzl_library(
     name = "generate",
     srcs = ["generate.bzl"],
     visibility = [
+        "//docs:__pkg__",
         "//syft:__subpackages__",
+    ],
+    deps = [
+        ":file_mappings",
+        ":util",
     ],
 )
 
@@ -24,7 +29,24 @@ bzl_library(
 )
 
 bzl_library(
+    name = "file_mappings",
+    srcs = ["file_mappings.bzl"],
+    visibility = [
+        "//docs:__pkg__",
+        "//syft:__subpackages__",
+    ],
+)
+
+bzl_library(
     name = "util",
     srcs = ["util.bzl"],
     visibility = ["//syft:__subpackages__"],
+)
+
+bzl_library(
+    name = "toolchains_repo",
+    srcs = ["toolchains_repo.bzl"],
+    visibility = [
+        "//syft:__subpackages__",
+    ],
 )

@@ -6,7 +6,8 @@ module(
   compatibility_level = 1,
 )
 
-bazel_dep(name = "aspect_bazel_lib", version = "1.35.0")
-bazel_dep(name = "bazel_skylib", version = "1.4.1")
+bazel_dep(name = "aspect_bazel_lib", version = "1.37.0")
+bazel_dep(name = "bazel_skylib", version = "1.5.0")
 bazel_dep(name = "platforms", version = "0.0.5")
+bazel_dep(name = "stardoc", version = "0.6.2")
 bazel_dep(name = "rules_oci", version = "1.4.0")

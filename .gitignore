@@ -1,0 +1,10 @@
+### Bazel ###
+bazel-*
+.ijwb/.blaze/*
+# Buildkite specific rc file for CI agent shared cache.
+buildkite.bazelrc
+# Personal, developer-specific rc file
+user.bazelrc
+
+### MacOS ###
+.DS_Store

@@ -1,7 +1,7 @@
 "Implementation details for generate rule"
 
 load("//syft/private:util.bzl", "util")
-load("//syft/private:mappings.bzl", "FILE_MAPPINGS")
+load("//syft/private:file_mappings.bzl", "FILE_MAPPINGS")
 
 _DOC = """Generate SBOM for an oci_tarball using syft binary at a remote registry.
 
@@ -66,6 +66,7 @@ def syft_generate_impl(ctx):
 
 syft_generate = rule(
     implementation = syft_generate_impl,
+    doc = _DOC,
     attrs = _attrs,
     toolchains = [
         "@bazel_tools//tools/sh:toolchain_type",
