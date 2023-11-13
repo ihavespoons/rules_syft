@@ -17,10 +17,6 @@ load("@stardoc_maven//:defs.bzl", stardoc_pinned_maven_install = "pinned_maven_i
 
 stardoc_pinned_maven_install()
 
-load("@aspect_bazel_lib//lib:repositories.bzl", "aspect_bazel_lib_dependencies")
-
-aspect_bazel_lib_dependencies(override_local_config_platform = True)
-
 load("//syft:dependencies.bzl", "rules_syft_dependencies")
 
 rules_syft_dependencies()
@@ -33,7 +29,7 @@ load("@rules_oci//oci:dependencies.bzl", "rules_oci_dependencies")
 
 rules_oci_dependencies()
 
-load("@rules_oci//oci:repositories.bzl", "LATEST_CRANE_VERSION", "LATEST_ZOT_VERSION", "oci_register_toolchains")
+load("@rules_oci//oci:repositories.bzl", "LATEST_CRANE_VERSION", "oci_register_toolchains")
 
 oci_register_toolchains(
     name = "oci",
