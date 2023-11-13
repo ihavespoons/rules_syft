@@ -12,9 +12,3 @@ def http_archive(name, **kwargs):
 
 def generate_test_internal_deps():
     "Fetch deps needed for local testing"
-    http_archive(
-        name = "rules_oci",
-        sha256 = "21a7d14f6ddfcb8ca7c5fc9ffa667c937ce4622c7d2b3e17aea1ffbc90c96bed",
-        strip_prefix = "rules_oci-1.4.0",
-        url = "https://github.com/bazel-contrib/rules_oci/releases/download/v1.4.0/rules_oci-v1.4.0.tar.gz",
-    )
