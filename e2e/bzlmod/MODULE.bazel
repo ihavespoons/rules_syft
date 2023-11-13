@@ -8,10 +8,10 @@ bazel_dep(name = "platforms", version = "0.0.7")
 
 local_path_override(
     module_name = "rules_syft",
-    path = "../../",
+    path = "../..",
 )
 
-syft = use_extension("@rules_syft/syft:extensions.bzl", "syft")
+syft = use_extension("rules_syft/syft:extensions.bzl", "syft")
 syft.toolchain(syft_version = "0.96.0")
 use_repo(syft, "syft_toolchains")
 
