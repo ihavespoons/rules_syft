@@ -25,10 +25,6 @@ load("//syft:repositories.bzl", "syft_register_toolchains")
 
 syft_register_toolchains("syft")
 
-load("@bazel_skylib//lib:unittest.bzl", "register_unittest_toolchains")
-
-register_unittest_toolchains()
-
 load("@rules_oci//oci:dependencies.bzl", "rules_oci_dependencies")
 
 rules_oci_dependencies()

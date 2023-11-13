@@ -3,9 +3,8 @@
 set -euo pipefail
 
 readonly SYFT="{{syft}}"
-readonly TARBALL="{{tarball}}"
+readonly IMAGE="{{image}}"
 readonly TYPE="{{type}}"
 readonly SBOM="{{sbom}}"
 
-
-exec "${SYFT}" "${TARBALL}" --output "${TYPE}"="${SBOM}"
+exec "${SYFT}" "${IMAGE}" --output "${TYPE}"="${SBOM}"
