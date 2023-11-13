@@ -1,9 +1,8 @@
 """Repository rules for fetching syft"""
 
-load("//syft/private:versions.bzl", "SYFT_VERSIONS")
-
 # buildifier: disable=bzl-visibility
 load("//syft/private:toolchains_repo.bzl", "PLATFORMS", "toolchains_repo")
+load("//syft/private:versions.bzl", "SYFT_VERSIONS")
 
 SYFT_BUILD_TMPL = """\
 load("@rules_syft//syft:toolchain.bzl", "syft_toolchain")

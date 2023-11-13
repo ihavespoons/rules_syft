@@ -42,3 +42,15 @@ oci_register_toolchains(
 load("@rules_oci//cosign:repositories.bzl", "cosign_register_toolchains")
 
 cosign_register_toolchains("cosign_toolchain")
+
+load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
+
+buildifier_prebuilt_deps()
+
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+
+bazel_skylib_workspace()
+
+load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
+
+buildifier_prebuilt_register_toolchains()

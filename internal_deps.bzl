@@ -40,3 +40,12 @@ def rules_syft_internal_deps():
         strip_prefix = "rules_oci-1.4.0",
         url = "https://github.com/bazel-contrib/rules_oci/releases/download/v1.4.0/rules_oci-v1.4.0.tar.gz",
     )
+
+    http_archive(
+        name = "buildifier_prebuilt",
+        sha256 = "72b5bb0853aac597cce6482ee6c62513318e7f2c0050bc7c319d75d03d8a3875",
+        strip_prefix = "buildifier-prebuilt-6.3.3",
+        urls = [
+            "http://github.com/keith/buildifier-prebuilt/archive/6.3.3.tar.gz",
+        ],
+    )
