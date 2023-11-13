@@ -51,7 +51,7 @@ jobs:
         os: ${{ fromJSON(needs.matrix-prep-os.outputs.os) }}
         bazelversion: ${{ fromJSON(needs.matrix-prep-bazelversion.outputs.bazelversions) }}
         folder:
-          - "e2e/smoke"
+          - "e2e/bzlmod"
           - "e2e/generate"
         bzlmodEnabled: [true, false]
         exclude:
