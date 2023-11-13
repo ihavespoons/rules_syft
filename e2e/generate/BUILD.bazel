@@ -6,6 +6,25 @@ oci_image(
     base = "@dockerhub_ubuntu",
 )
 
+syft_generate_sbom(
+    name = "generate_sbom_imagedir",
+    image = ":dockerhub_ubuntu",
+    type = "cyclonedx-json",
+)
+
+sh_test(
+    name = "imagedir_generate_sbom_test",
+    srcs = ["container_validator.sh"],
+    args = [
+        "$(location :generate_sbom_imagedir)",
+        "$(location :sbom.json.result.image)",
+    ],
+    data = [
+        ":generate_sbom_imagedir",
+        ":sbom.json.result.image",
+    ],
+)
+
 oci_tarball(
     name = "dockerhub_ubuntu_tarball",
     image = ":dockerhub_ubuntu",
@@ -13,20 +32,20 @@ oci_tarball(
 )
 
 syft_generate_sbom(
-    name = "generate_sbom",
+    name = "generate_sbom_tarball",
     image = ":dockerhub_ubuntu_tarball",
     type = "cyclonedx-json",
 )
 
 sh_test(
-    name = "generate_sbom_test",
+    name = "tarball_generate_sbom_test",
     srcs = ["container_validator.sh"],
     args = [
-        "$(location :generate_sbom)",
-        "$(location :sbom.json.result)",
+        "$(location :generate_sbom_tarball)",
+        "$(location :sbom.json.result.tarball)",
     ],
     data = [
-        ":generate_sbom",
-        ":sbom.json.result",
+        ":generate_sbom_tarball",
+        ":sbom.json.result.tarball",
     ],
 )
