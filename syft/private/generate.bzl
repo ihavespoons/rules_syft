@@ -41,16 +41,15 @@ def syft_generate_sbom_impl(ctx):
     """
     image = ctx.file.image
     sbom = ctx.actions.declare_file("{}/sbom.{}".format(ctx.label.name, FILE_MAPPINGS[ctx.attr.type]))
-    syft = ctx.toolchains["@rules_syft//syft:toolchain_type"].syft_info.binary
     args = ctx.actions.args()
     args.add("--output", ctx.attr.type + "=" + sbom.path)
 
     ctx.actions.run(
-        executable = syft.path,
+        executable = ctx.toolchains["@rules_syft//syft:toolchain_type"].syftinfo.target_tool_path,
         inputs = [image],
         arguments = [image.path, args],
         outputs = [sbom],
-        tools = [syft],
+        tools = ctx.toolchains["@rules_syft//syft:toolchain_type"].syftinfo.tool_files,
         mnemonic = "SyftGenerateContainerSbom",
         progress_message = "Generating SBOM for %{label}",
     )

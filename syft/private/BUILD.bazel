@@ -39,3 +39,11 @@ bzl_library(
         "//syft:__subpackages__",
     ],
 )
+
+bzl_library(
+    name = "resolved_toolchain",
+    srcs = ["resolved_toolchain.bzl"],
+    visibility = [
+        "//syft:__subpackages__",
+    ],
+)

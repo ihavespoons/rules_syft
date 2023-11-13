@@ -17,11 +17,9 @@ sh_test(
     srcs = ["container_validator.sh"],
     args = [
         "$(location :generate_sbom_imagedir)",
-        "$(location :sbom.json.result.image)",
     ],
     data = [
         ":generate_sbom_imagedir",
-        ":sbom.json.result.image",
     ],
 )
 
@@ -42,10 +40,8 @@ sh_test(
     srcs = ["container_validator.sh"],
     args = [
         "$(location :generate_sbom_tarball)",
-        "$(location :sbom.json.result.tarball)",
     ],
     data = [
         ":generate_sbom_tarball",
-        ":sbom.json.result.tarball",
     ],
 )

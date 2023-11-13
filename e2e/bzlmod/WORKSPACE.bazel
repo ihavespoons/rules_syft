@@ -13,7 +13,10 @@ rules_syft_dependencies()
 
 load("@rules_syft//syft:repositories.bzl", "syft_register_toolchains")
 
-syft_register_toolchains("syft")
+syft_register_toolchains(
+    "syft",
+    syft_version = "0.96.0",
+)
 
 http_archive(
     name = "rules_oci",

@@ -17,13 +17,14 @@ load("@stardoc_maven//:defs.bzl", stardoc_pinned_maven_install = "pinned_maven_i
 
 stardoc_pinned_maven_install()
 
-load("//syft:dependencies.bzl", "rules_syft_dependencies")
+load("//syft:repositories.bzl", "rules_syft_dependencies", "syft_register_toolchains")
 
 rules_syft_dependencies()
 
-load("//syft:repositories.bzl", "syft_register_toolchains")
-
-syft_register_toolchains("syft")
+syft_register_toolchains(
+    "syft",
+    syft_version = "0.96.0",
+)
 
 load("@rules_oci//oci:dependencies.bzl", "rules_oci_dependencies")
 
