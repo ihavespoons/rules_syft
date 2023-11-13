@@ -2,8 +2,9 @@
 Add a basic smoke-test target below.
 """
 
-load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@rules_oci//oci:defs.bzl", "oci_image")
 load("@rules_syft//syft:defs.bzl", "syft_generate_sbom")
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
 
 oci_image(
     name = "dockerhub_ubuntu",
