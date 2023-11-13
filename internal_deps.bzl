@@ -35,13 +35,6 @@ def rules_syft_internal_deps():
     )
 
     http_archive(
-        name = "rules_oci",
-        sha256 = "21a7d14f6ddfcb8ca7c5fc9ffa667c937ce4622c7d2b3e17aea1ffbc90c96bed",
-        strip_prefix = "rules_oci-1.4.0",
-        url = "https://github.com/bazel-contrib/rules_oci/releases/download/v1.4.0/rules_oci-v1.4.0.tar.gz",
-    )
-
-    http_archive(
         name = "buildifier_prebuilt",
         sha256 = "72b5bb0853aac597cce6482ee6c62513318e7f2c0050bc7c319d75d03d8a3875",
         strip_prefix = "buildifier-prebuilt-6.3.3",
