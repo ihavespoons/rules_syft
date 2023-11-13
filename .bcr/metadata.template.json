@@ -3,13 +3,11 @@
   "maintainers": [
     {
       "name": "Ben Gittins",
-      "email": "",
+      "email": "beng@canva.com",
       "github": "ihavespoons"
     }
   ],
-  "repository": [
-    "github:ihavespoons/rules_syft"
-  ],
+  "repository": ["github:ihavespoons/rules_syft"],
   "versions": [],
   "yanked_versions": {}
 }
