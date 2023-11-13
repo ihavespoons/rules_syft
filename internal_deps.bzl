@@ -35,13 +35,6 @@ def rules_syft_internal_deps():
     )
 
     http_archive(
-        name = "aspect_bazel_lib",
-        sha256 = "ce259cbac2e94a6dff01aff9455dcc844c8af141503b02a09c2642695b7b873e",
-        strip_prefix = "bazel-lib-1.37.0",
-        url = "https://github.com/aspect-build/bazel-lib/releases/download/v1.37.0/bazel-lib-v1.37.0.tar.gz",
-    )
-
-    http_archive(
         name = "rules_oci",
         sha256 = "21a7d14f6ddfcb8ca7c5fc9ffa667c937ce4622c7d2b3e17aea1ffbc90c96bed",
         strip_prefix = "rules_oci-1.4.0",

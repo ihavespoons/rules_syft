@@ -21,6 +21,10 @@ load("@aspect_bazel_lib//lib:repositories.bzl", "aspect_bazel_lib_dependencies")
 
 aspect_bazel_lib_dependencies(override_local_config_platform = True)
 
+load("//syft:dependencies.bzl", "rules_syft_dependencies")
+
+rules_syft_dependencies()
+
 load("//syft:repositories.bzl", "syft_register_toolchains")
 
 syft_register_toolchains("syft")
