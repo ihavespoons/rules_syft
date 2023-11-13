@@ -11,6 +11,3 @@ build --repository_cache=~/.cache/bazel-repo
 test --test_output=errors
 # Allows tests to run bazelisk-in-bazel, since this is the cache folder used
 test --test_env=XDG_CACHE_HOME
-
-# Disable legacy external runfiles
-common --nolegacy_external_runfiles

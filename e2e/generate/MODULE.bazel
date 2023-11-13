@@ -4,6 +4,14 @@ bazel_dep(name = "rules_syft", version = "0.0.0", dev_dependency = True)
 bazel_dep(name = "bazel_skylib", version = "1.5.0", dev_dependency = True)
 bazel_dep(name = "rules_oci", version = "1.4.0", dev_dependency = True)
 
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "dockerhub_ubuntu",
+    digest = "sha256:c9cf959fd83770dfdefd8fb42cfef0761432af36a764c077aed54bbc5bb25368",
+    image = "docker.io/library/ubuntu",
+)
+use_repo(oci, "dockerhub_ubuntu")
+
 bazel_dep(name = "platforms", version = "0.0.7")
 
 local_path_override(
@@ -16,11 +24,3 @@ syft_configure.toolchain(syft_version = "0.96.0")
 use_repo(syft_configure, "syft_toolchains")
 
 register_toolchains("@syft_toolchains//:all")
-
-oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
-oci.pull(
-    name = "dockerhub_ubuntu",
-    digest = "sha256:c9cf959fd83770dfdefd8fb42cfef0761432af36a764c077aed54bbc5bb25368",
-    image = "docker.io/library/ubuntu",
-)
-use_repo(oci, "dockerhub_ubuntu")

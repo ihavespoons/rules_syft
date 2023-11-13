@@ -2,8 +2,10 @@
 # Take care to document any settings that you expect users to apply.
 # Settings that apply only to CI are in .github/workflows/ci.bazelrc
 
-build --incompatible_strict_action_env
-build --nolegacy_external_runfiles
+# Required until this is the default; expected in Bazel 7
+common --enable_bzlmod
+# Disable lockfile for now. It is unstable.
+common --lockfile_mode=off
 
 # Load any settings specific to the current user.
 # .bazelrc.user should appear in .gitignore so that settings are not shared with team members
