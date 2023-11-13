@@ -11,7 +11,7 @@ local_path_override(
     path = "../../",
 )
 
-syft = use_extension("//@rules_syft/syft:extensions.bzl", "syft")
+syft = use_extension("@rules_syft/syft:extensions.bzl", "syft")
 syft.toolchain(syft_version = "0.96.0")
 use_repo(syft, "syft_toolchains")
 
