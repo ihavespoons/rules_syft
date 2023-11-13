@@ -5,10 +5,6 @@ exports_files(
     visibility = ["//docs:__pkg__"],
 )
 
-exports_files([
-    "generate.sh.tpl",
-])
-
 bzl_library(
     name = "generate",
     srcs = ["generate.bzl"],

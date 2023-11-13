@@ -27,33 +27,20 @@ syft_generate_sbom(
 _attrs = {
     "image": attr.label(allow_single_file = True, mandatory = True, doc = "Label to an oci_tarball or oci_image directory"),
     "type": attr.string(values = ["cyclonedx-json", "cyclonedx-xml", "syft-json", "syft-text", "spdx-tag-value", "spdx-json", "github-json"], mandatory = True, doc = "Type of sbom. Acceptable values are (cyclonedx-json|cyclonedx-xml|syft-json|syft-text|spdx-tag-value|spdx-json|github-json)"),
-    "_generate_sh_tpl": attr.label(default = "generate.sh.tpl", allow_single_file = True),
     "_windows_constraint": attr.label(default = "@platforms//os:windows"),
 }
 
 def syft_generate_sbom_impl(ctx):
-    syft = ctx.toolchains["@rules_syft//syft:toolchain_type"].syft_info.binary
     image = ctx.file.image
     sbom = ctx.actions.declare_file("{}/sbom.{}".format(ctx.label.name, FILE_MAPPINGS[ctx.attr.type]))
-    executable = ctx.actions.declare_file("{}/generate.sh".format(ctx.label.name))
-
-    substitutions = {
-        "{{syft}}": syft.path,
-        "{{image}}": image.path,
-        "{{sbom}}": sbom.path,
-        "{{type}}": ctx.attr.type,
-    }
-
-    ctx.actions.expand_template(
-        template = ctx.file._generate_sh_tpl,
-        output = executable,
-        is_executable = True,
-        substitutions = substitutions,
-    )
+    syft = ctx.toolchains["@rules_syft//syft:toolchain_type"].syft_info.binary
+    args = ctx.actions.args()
+    args.add("--output", ctx.attr.type + "=" + sbom.path)
 
     ctx.actions.run(
-        executable = util.maybe_wrap_launcher_for_windows(ctx, executable),
-        inputs = [image, executable],
+        executable = syft.path,
+        inputs = [image],
+        arguments = [image.path, args],
         outputs = [sbom],
         tools = [syft],
         mnemonic = "SyftGenerateContainerSbom",
@@ -61,7 +48,7 @@ def syft_generate_sbom_impl(ctx):
     )
 
     return [
-        DefaultInfo(files = depset([sbom]), executable = executable),
+        DefaultInfo(files = depset([sbom]), executable = sbom),
     ]
 
 syft_generate_sbom = rule(

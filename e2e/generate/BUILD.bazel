@@ -1,0 +1,32 @@
+load("@rules_syft//syft:defs.bzl", "syft_generate_sbom")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
+
+oci_image(
+    name = "dockerhub_ubuntu",
+    base = "@dockerhub_ubuntu",
+)
+
+oci_tarball(
+    name = "dockerhub_ubuntu_tarball",
+    image = ":dockerhub_ubuntu",
+    repo_tags = [],
+)
+
+syft_generate_sbom(
+    name = "generate_sbom",
+    image = ":dockerhub_ubuntu_tarball",
+    type = "cyclonedx-json",
+)
+
+sh_test(
+    name = "generate_sbom_test",
+    srcs = ["container_validator.sh"],
+    args = [
+        "$(location :generate_sbom)",
+        "$(location :sbom.json.result)",
+    ],
+    data = [
+        ":generate_sbom",
+        ":sbom.json.result",
+    ],
+)

@@ -3,9 +3,13 @@ local_repository(
     path = "../../",
 )
 
-load("//@rules_syft/syft:repositories.bzl", "syft_register_toolchains")
+load("@rules_syft//syft:repositories.bzl", "syft_register_toolchains")
 
 syft_register_toolchains("syft")
+
+load(":internal_deps.bzl", "generate_test_internal_deps")
+
+generate_test_internal_deps()
 
 load("@rules_oci//oci:dependencies.bzl", "rules_oci_dependencies")
 

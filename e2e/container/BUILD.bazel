@@ -1,2 +1,0 @@
-load("@rules_syft//syft:defs.bzl", "")
-load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
