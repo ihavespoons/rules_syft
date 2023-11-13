@@ -1,3 +1,5 @@
+workspace(name = "rules_syft_generate_test")
+
 local_repository(
     name = "rules_syft",
     path = "../../",

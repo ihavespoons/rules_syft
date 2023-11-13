@@ -21,8 +21,8 @@ jobs:
     with:
       folders: |
         [
-          ".",
-          "e2e/smoke"
+          "e2e/smoke",
+          "e2e/generate",
         ]
       exclude: |
         [
