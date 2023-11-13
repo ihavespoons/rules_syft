@@ -6,10 +6,6 @@ local_repository(
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load(":internal_deps.bzl", "generate_test_internal_deps")
-
-generate_test_internal_deps()
-
 load("@rules_syft//syft:repositories.bzl", "syft_register_toolchains")
 
 syft_register_toolchains(
