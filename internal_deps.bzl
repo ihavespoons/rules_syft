@@ -42,3 +42,10 @@ def rules_syft_internal_deps():
             "http://github.com/keith/buildifier-prebuilt/archive/6.3.3.tar.gz",
         ],
     )
+
+    http_archive(
+        name = "aspect_bazel_lib",
+        sha256 = "ce259cbac2e94a6dff01aff9455dcc844c8af141503b02a09c2642695b7b873e",
+        strip_prefix = "bazel-lib-1.37.0",
+        url = "https://github.com/aspect-build/bazel-lib/releases/download/v1.37.0/bazel-lib-v1.37.0.tar.gz",
+    )
