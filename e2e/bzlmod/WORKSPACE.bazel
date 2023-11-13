@@ -1,14 +1,14 @@
 workspace(name = "rules_syft_smoke_test")
 
-# Override http_archive for local testing
 local_repository(
     name = "rules_syft",
-    path = "../..",
+    path = "../../",
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load(":internal_deps.bzl", "generate_test_internal_deps")
 
-rules_syft_dependencies()
+generate_test_internal_deps()
 
 load("@rules_syft//syft:repositories.bzl", "syft_register_toolchains")
 
