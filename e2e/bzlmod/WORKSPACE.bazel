@@ -7,7 +7,6 @@ local_repository(
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@rules_syft//syft:dependencies.bzl", "rules_syft_dependencies")
 
 rules_syft_dependencies()
 
