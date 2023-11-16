@@ -40,9 +40,13 @@ _ATTRS = {
 }
 
 def _syft_repo_impl(repository_ctx):
-    url = "https://github.com/anchore/syft/releases/download/v{version}/syft_{version}_{platform}.tar.gz".format(
+    extension = "tar.gz"
+    if repository_ctx.attr.platform == "windows_amd64":
+        extension = "zip"
+    url = "https://github.com/anchore/syft/releases/download/v{version}/syft_{version}_{platform}.{extension}".format(
         version = repository_ctx.attr.syft_version,
         platform = repository_ctx.attr.platform,
+        extension = extension,
     )
     repository_ctx.download_and_extract(
         url = url,
