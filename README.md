@@ -20,3 +20,7 @@ The public API is outlined below. It is currently barebones with more features b
 ## SBOM Generation
 
 - [syft_generate](docs/generate.md) - Generate an SBOM from a provided tarball
+
+### SBOM Generation Examples
+
+- [Multiarch SBOM Generation](docs/multiarch-example.md) - Generate SBOM's for multiarch images then combine into an image index
