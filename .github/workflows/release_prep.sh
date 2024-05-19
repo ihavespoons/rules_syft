@@ -24,9 +24,9 @@ cat << EOF
 \`\`\`starlark
 bazel_dep(name = "rules_syft", version = "${TAG:1}")
 
-syft_configure = use_extension("@rules_syft//syft:extensions.bzl", "syft")
-syft_configure.toolchain(syft_version = "1.4.1")
-use_repo(syft_configure, "syft_toolchains")
+syft = use_extension("@rules_syft//syft:extensions.bzl", "syft")
+syft.toolchain(syft_version = "1.4.1")
+use_repo(syft, "syft_toolchains")
 
 register_toolchains("@syft_toolchains//:all")
 \`\`\`
@@ -45,5 +45,5 @@ http_archive(
 )
 EOF
 
-awk 'f;/--SNIP--/{f=1}' e2e/bzlmod/WORKSPACE.bazel
+awk 'f;/--SNIP--/{f=1}' e2e/smoke/WORKSPACE.bazel
 echo "\`\`\`"

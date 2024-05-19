@@ -23,8 +23,7 @@ jobs:
       folders: |
         [
           ".",
-          "e2e/bzlmod",
-          "e2e/generate"
+          "e2e/smoke",
         ]
       exclude: |
         [

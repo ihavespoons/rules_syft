@@ -1,0 +1,41 @@
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
+load("@rules_syft//syft:defs.bzl", "syft_generate_sbom")
+
+oci_image(
+    name = "image",
+    base = "@ubuntu",
+)
+
+oci_tarball(
+    name = "tarball",
+    image = ":image",
+    repo_tags = [],
+)
+
+syft_generate_sbom(
+    name = "sbom_pulled",
+    image = "@ubuntu",
+    type = "syft-json",
+)
+
+syft_generate_sbom(
+    name = "sbom_image",
+    image = ":image",
+    type = "syft-json",
+)
+
+syft_generate_sbom(
+    name = "sbom_tarball",
+    image = ":tarball",
+    type = "syft-json",
+)
+
+build_test(
+    name = "smoke_test",
+    targets = [
+        ":sbom_pulled",
+        ":sbom_image",
+        ":sbom_tarball",
+    ],
+)
