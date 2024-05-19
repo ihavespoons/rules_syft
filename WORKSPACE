@@ -23,7 +23,7 @@ rules_syft_dependencies()
 
 syft_register_toolchains(
     "syft",
-    syft_version = "0.96.0",
+    syft_version = "1.4.1",
 )
 
 load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")

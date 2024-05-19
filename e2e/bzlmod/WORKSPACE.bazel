@@ -49,5 +49,5 @@ load("@rules_syft//syft:repositories.bzl", "syft_register_toolchains")
 
 syft_register_toolchains(
     "syft",
-    syft_version = "0.96.0",
+    syft_version = "1.4.1",
 )
