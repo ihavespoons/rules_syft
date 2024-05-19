@@ -1,6 +1,6 @@
-"Mirrored versions/integrity hashes of syft binaries"
+"Mirror of release info"
 
-SYFT_VERSIONS = {
+TOOL_VERSIONS = {
     "0.96.0": {
         "darwin_amd64": "sha384-7sUuca/LDUbxzJXLDdhJSvqbqPVHebKWdyzNhAatbey1RRZHmvgiO3isMzI9eQaD",
         "darwin_arm64": "sha384-xdMN59jBgF/eWJlT+fA6La0oh/hTrlr1tugyAMcjd81Cs8XE4IdyoZ/CJ3yS5ScH",

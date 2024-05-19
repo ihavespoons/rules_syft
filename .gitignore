@@ -8,3 +8,6 @@ user.bazelrc
 
 ### MacOS ###
 .DS_Store
+
+### Python ###
+.venv/
