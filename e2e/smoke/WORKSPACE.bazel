@@ -55,7 +55,4 @@ oci_pull(
 
 load("@rules_syft//syft:repositories.bzl", "syft_register_toolchains")
 
-syft_register_toolchains(
-    name = "syft",
-    syft_version = "1.4.1",
-)
+syft_register_toolchains()

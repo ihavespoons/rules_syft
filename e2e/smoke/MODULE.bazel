@@ -26,7 +26,7 @@ use_repo(oci, "ubuntu")
 
 # Syft
 syft = use_extension("@rules_syft//syft:extensions.bzl", "syft")
-syft.toolchain(syft_version = "1.4.1")
+syft.toolchain()
 use_repo(syft, "syft_toolchains")
 
 register_toolchains("@syft_toolchains//:all")

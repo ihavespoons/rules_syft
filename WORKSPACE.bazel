@@ -21,10 +21,7 @@ load("//syft:repositories.bzl", "rules_syft_dependencies", "syft_register_toolch
 
 rules_syft_dependencies()
 
-syft_register_toolchains(
-    "syft",
-    syft_version = "1.4.1",
-)
+syft_register_toolchains()
 
 load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
 
