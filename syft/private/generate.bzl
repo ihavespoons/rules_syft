@@ -55,7 +55,7 @@ def syft_generate_sbom_impl(ctx):
     )
 
     return [
-        DefaultInfo(files = depset([sbom]), executable = sbom),
+        DefaultInfo(files = depset([sbom])),
     ]
 
 syft_generate_sbom = rule(
@@ -66,5 +66,4 @@ syft_generate_sbom = rule(
         "@bazel_tools//tools/sh:toolchain_type",
         "@rules_syft//syft:toolchain_type",
     ],
-    executable = True,
 )
