@@ -11,7 +11,7 @@ load("@rules_syft//syft:defs.bzl", ...)
 ## syft_generate_sbom
 
 <pre>
-syft_generate_sbom(<a href="#syft_generate_sbom-name">name</a>, <a href="#syft_generate_sbom-image">image</a>)
+syft_generate_sbom(<a href="#syft_generate_sbom-name">name</a>, <a href="#syft_generate_sbom-image">image</a>, <a href="#syft_generate_sbom-scope">scope</a>)
 </pre>
 
 Generate SBOM for an oci_tarball or oci_image using syft binary that is pulled as a toolchain.
@@ -40,5 +40,6 @@ syft_generate_sbom(
 | :------------- | :------------- | :------------- | :------------- | :------------- |
 | <a id="syft_generate_sbom-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
 | <a id="syft_generate_sbom-image"></a>image |  Label to an oci_tarball or oci_image directory   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
+| <a id="syft_generate_sbom-scope"></a>scope |  selection of layers to catalog   | String | optional |  `"squashed"`  |
 
 

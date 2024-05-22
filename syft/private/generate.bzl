@@ -23,7 +23,16 @@ syft_generate_sbom(
 """
 
 _attrs = {
-    "image": attr.label(allow_single_file = True, mandatory = True, doc = "Label to an oci_tarball or oci_image directory"),
+    "image": attr.label(
+        doc = "Label to an oci_tarball or oci_image directory",
+        allow_single_file = True,
+        mandatory = True,
+    ),
+    "scope": attr.string(
+        doc = "selection of layers to catalog",
+        values = ["squashed", "all-layers"],
+        default = "squashed",
+    ),
     "_windows_constraint": attr.label(default = "@platforms//os:windows"),
 }
 
@@ -31,6 +40,9 @@ _attrs = {
 SYFT_CONFIG_TMPL = """\
 # disable checking for application updates on startup
 check-for-app-updates: false
+
+# the search space to look for file and package data
+scope: {scope}
 
 # the output format(s) of the SBOM report
 output:
@@ -60,6 +72,7 @@ def syft_generate_sbom_impl(ctx):
     ctx.actions.write(
         output = config_file,
         content = SYFT_CONFIG_TMPL.format(
+            scope = ctx.attr.scope,
             output = "\n".join(output_options),
         ),
     )
