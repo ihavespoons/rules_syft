@@ -5,7 +5,6 @@ stardoc_with_diff_test(
     bzl_library_target = "//syft:defs",
     symbol_names = [
         "syft_generate_sbom",
-        "syft_generate_sbom_rule",
     ],
 )
 
