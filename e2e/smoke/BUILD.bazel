@@ -16,19 +16,16 @@ oci_tarball(
 syft_generate_sbom(
     name = "sbom_pulled",
     image = "@ubuntu",
-    type = "syft-json",
 )
 
 syft_generate_sbom(
     name = "sbom_image",
     image = ":image",
-    type = "syft-json",
 )
 
 syft_generate_sbom(
     name = "sbom_tarball",
     image = ":tarball",
-    type = "syft-json",
 )
 
 build_test(
