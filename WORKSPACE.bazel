@@ -23,6 +23,10 @@ rules_syft_dependencies()
 
 syft_register_toolchains()
 
+load("//grype:repositories.bzl", "grype_register_toolchains")
+
+grype_register_toolchains()
+
 load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
 
 buildifier_prebuilt_deps()

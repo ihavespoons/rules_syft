@@ -62,7 +62,7 @@ load("@rules_syft//grype:repositories.bzl", "grype_register_database", "grype_re
 grype_register_toolchains()
 
 grype_register_database(
-    name = "grype_database",
+    name = "my_grype_database",
     sha256 = "96a5396fc536f1d239960a3719114d198a7e191485d5e87a5232c22dfc99cafb",
     url = "https://toolbox-data.anchore.io/grype/databases/vulnerability-db_v5_2024-05-17T01:31:32Z_1716007601.tar.gz",
     validate_age = False,

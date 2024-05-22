@@ -1,5 +1,5 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
-load("//syft/private:resolved_toolchain.bzl", "resolved_toolchain")
+load("//grype/private:resolved_toolchain.bzl", "resolved_toolchain")
 
 exports_files(
     glob(["*.bzl"]),
@@ -25,7 +25,7 @@ bzl_library(
     visibility = [
         "//visibility:public",
     ],
-    deps = ["//syft/private:generate"],
+    deps = ["//grype/private:grype"],
 )
 
 bzl_library(
@@ -33,8 +33,8 @@ bzl_library(
     srcs = ["repositories.bzl"],
     visibility = ["//visibility:public"],
     deps = [
-        "//syft/private:toolchains_repo",
-        "//syft/private:versions",
+        "//grype/private:toolchains_repo",
+        "//grype/private:versions",
         "@bazel_tools//tools/build_defs/repo:http.bzl",
         "@bazel_tools//tools/build_defs/repo:utils.bzl",
     ],
@@ -50,11 +50,5 @@ bzl_library(
 bzl_library(
     name = "toolchain",
     srcs = ["toolchain.bzl"],
-    visibility = ["//visibility:public"],
-)
-
-bzl_library(
-    name = "providers",
-    srcs = ["providers.bzl"],
     visibility = ["//visibility:public"],
 )

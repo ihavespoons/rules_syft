@@ -91,6 +91,11 @@ def main() -> None:
     with open("syft_versions.bzl", "w") as f:
         f.write(syft_versions_file)
 
+    grype_versions = get_tool_versions(client=client, repo_name="anchore/grype")
+    grype_versions_file = get_versions_file(grype_versions)
+    with open("grype_versions.bzl", "w") as f:
+        f.write(grype_versions_file)
+
 
 if __name__ == "__main__":
     main()
