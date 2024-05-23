@@ -31,6 +31,9 @@ _attrs = {
 
 # see: https://github.com/anchore/syft#configuration
 SYFT_CONFIG_TMPL = """\
+# disable checking for application updates on startup
+check-for-app-updates: false
+
 # the output format(s) of the SBOM report
 output:
 {output}
