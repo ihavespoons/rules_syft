@@ -3,3 +3,6 @@ bazel-*
 .idea/
 .ijwb/
 .venv/
+
+# TODO: enable when it is more stable, maybe Bazel 7.2
+MODULE.bazel.lock
