@@ -25,6 +25,7 @@ jobs:
           ".",
           "e2e/smoke",
           "e2e/grype_database_name",
+          "e2e/syft_sbom_deprecation",
         ]
       exclude: |
         [

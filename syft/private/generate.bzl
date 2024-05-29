@@ -16,7 +16,7 @@ oci_tarball(
     repo_tags = []
 )
 
-syft_generate_sbom(
+syft_sbom(
     name = "generate_sbom",
     image = ":image_tarball"
 )
@@ -50,7 +50,7 @@ output:
 {output}
 """
 
-def syft_generate_sbom_impl(ctx):
+def syft_sbom_impl(ctx):
     """
     Implementation for generating SBOM for an oci_tarball or oci_image using syft binary that is pulled as a toolchain.
 
@@ -98,8 +98,8 @@ def syft_generate_sbom_impl(ctx):
         SyftSbomInfo(syft_json = outputs["syft-json"]),
     ]
 
-syft_generate_sbom = rule(
-    implementation = syft_generate_sbom_impl,
+syft_sbom = rule(
+    implementation = syft_sbom_impl,
     doc = _DOC,
     attrs = _attrs,
     toolchains = [

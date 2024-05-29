@@ -1,7 +1,7 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
 load("@rules_syft//grype:defs.bzl", "grype_report", "grype_test")
-load("@rules_syft//syft:defs.bzl", "syft_generate_sbom")
+load("@rules_syft//syft:defs.bzl", "syft_sbom")
 
 oci_image(
     name = "image",
@@ -14,17 +14,17 @@ oci_tarball(
     repo_tags = [],
 )
 
-syft_generate_sbom(
+syft_sbom(
     name = "sbom_pulled",
     image = "@ubuntu",
 )
 
-syft_generate_sbom(
+syft_sbom(
     name = "sbom_image",
     image = ":image",
 )
 
-syft_generate_sbom(
+syft_sbom(
     name = "sbom_tarball",
     image = ":tarball",
 )

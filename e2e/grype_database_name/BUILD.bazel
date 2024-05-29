@@ -1,8 +1,8 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@rules_syft//grype:defs.bzl", "grype_report", "grype_test")
-load("@rules_syft//syft:defs.bzl", "syft_generate_sbom")
+load("@rules_syft//syft:defs.bzl", "syft_sbom")
 
-syft_generate_sbom(
+syft_sbom(
     name = "sbom",
     image = "@ubuntu",
 )
