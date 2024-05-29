@@ -25,7 +25,7 @@ cat << EOF
 bazel_dep(name = "rules_syft", version = "${TAG:1}")
 
 syft_configure = use_extension("@rules_syft//syft:extensions.bzl", "syft")
-syft_configure.toolchain(syft_version = "1.4.1")
+syft_configure.toolchain(syft_version = "1.5.0")
 use_repo(syft_configure, "syft_toolchains")
 
 register_toolchains("@syft_toolchains//:all")
