@@ -1,0 +1,30 @@
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@rules_syft//grype:defs.bzl", "grype_report", "grype_test")
+load("@rules_syft//syft:defs.bzl", "syft_sbom")
+
+syft_sbom(
+    name = "sbom",
+    image = "@ubuntu",
+)
+
+grype_report(
+    name = "cve_report",
+    database = "@my_grype_database",
+    sbom = ":sbom",
+)
+
+grype_test(
+    name = "cve_test",
+    database = "@my_grype_database",
+    fail_on_severity = "high",
+    sbom = ":sbom",
+)
+
+build_test(
+    name = "smoke_test",
+    targets = [
+        ":sbom",
+        ":cve_report",
+        ":cve_test",
+    ],
+)

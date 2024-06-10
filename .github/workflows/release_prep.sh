@@ -16,24 +16,24 @@ git archive --format=tar --prefix=${PREFIX}/ ${TAG} | gzip > $ARCHIVE
 SHA=$(shasum -a 256 $ARCHIVE | awk '{print $1}')
 
 cat << EOF
-## Using Bzlmod with Bazel 6
+## Using Bzlmod with Bazel 6 or greater
 
-1. Enable with \`common --enable_bzlmod\` in \`.bazelrc\`.
+1. (Bazel 6 only) Enable with \`common --enable_bzlmod\` in \`.bazelrc\`.
 2. Add to your \`MODULE.bazel\` file:
 
 \`\`\`starlark
 bazel_dep(name = "rules_syft", version = "${TAG:1}")
 
-syft_configure = use_extension("@rules_syft//syft:extensions.bzl", "syft")
-syft_configure.toolchain(syft_version = "1.4.1")
-use_repo(syft_configure, "syft_toolchains")
+syft = use_extension("@rules_syft//syft:extensions.bzl", "syft")
+syft.toolchain(syft_version = "1.4.1")
+use_repo(syft, "syft_toolchains")
 
 register_toolchains("@syft_toolchains//:all")
 \`\`\`
 
 ## Using WORKSPACE
 
-Paste this snippet into your `WORKSPACE.bazel` file:
+Paste this snippet into your \`WORKSPACE.bazel\` file:
 
 \`\`\`starlark
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -45,5 +45,5 @@ http_archive(
 )
 EOF
 
-awk 'f;/--SNIP--/{f=1}' e2e/bzlmod/WORKSPACE.bazel
+awk 'f;/--SNIP--/{f=1}' e2e/smoke/WORKSPACE.bazel
 echo "\`\`\`"

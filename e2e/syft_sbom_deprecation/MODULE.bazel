@@ -1,0 +1,32 @@
+module(
+    name = "rules_syft_e2e_smoke",
+    version = "0.0.0",
+    compatibility_level = 1,
+)
+
+# Dependencies
+bazel_dep(name = "bazel_skylib", version = "1.6.1", dev_dependency = True)
+bazel_dep(name = "rules_oci", version = "1.7.5", dev_dependency = True)
+bazel_dep(name = "rules_syft", version = "0.0.0", dev_dependency = True)
+
+# Override for local testing
+local_path_override(
+    module_name = "rules_syft",
+    path = "../..",
+)
+
+# OCI
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "ubuntu",
+    digest = "sha256:c9cf959fd83770dfdefd8fb42cfef0761432af36a764c077aed54bbc5bb25368",
+    image = "docker.io/library/ubuntu",
+)
+use_repo(oci, "ubuntu")
+
+# Syft
+syft = use_extension("@rules_syft//syft:extensions.bzl", "syft")
+syft.toolchain()
+use_repo(syft, "syft_toolchains")
+
+register_toolchains("@syft_toolchains//:all")

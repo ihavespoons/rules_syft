@@ -11,87 +11,24 @@ on:
   workflow_dispatch:
 
 concurrency:
-  # Cancel previous actions from the same PR: https://stackoverflow.com/a/72408109
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+    # Cancel previous actions from the same PR or branch except 'main' branch.
+    # See https://docs.github.com/en/actions/using-jobs/using-concurrency and https://docs.github.com/en/actions/learn-github-actions/contexts for more info.
+    group: concurrency-group::${{ github.workflow }}::${{ github.event.pull_request.number > 0 && format('pr-{0}', github.event.pull_request.number) || github.ref_name }}${{ github.ref_name == 'main' && format('::{0}', github.run_id) || ''}}
+    cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 jobs:
-  matrix-prep-bazelversion:
-    # Prepares the 'bazelversion' axis of the test matrix
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - id: bazel_6
-        run: echo "bazelversion=$(head -n 1 .bazelversion)" >> $GITHUB_OUTPUT
-      - id: bazel_5
-        run: echo "bazelversion=5.4.0" >> $GITHUB_OUTPUT
-    outputs:
-      # Will look like ["<version from .bazelversion>", "5.3.2"]
-      bazelversions: ${{ toJSON(steps.*.outputs.bazelversion) }}
-  matrix-prep-os:
-    # Prepares the 'os' axis of the test matrix
-    runs-on: ubuntu-latest
-    steps:
-      - id: linux
-        run: echo "os=ubuntu-latest" >> $GITHUB_OUTPUT
-      - id: macos
-        run: echo "os=macos-latest" >> $GITHUB_OUTPUT
-    outputs:
-      # Will look like ["ubuntu-latest", "macos-latest"]
-      os: ${{ toJSON(steps.*.outputs.os) }}
   test:
-    # The type of runner that the job will run on
-    runs-on: ${{ matrix.os }}
-    needs:
-      - matrix-prep-bazelversion
-      - matrix-prep-os
-    strategy:
-      fail-fast: false
-      matrix:
-        os: ${{ fromJSON(needs.matrix-prep-os.outputs.os) }}
-        bazelversion: ${{ fromJSON(needs.matrix-prep-bazelversion.outputs.bazelversions) }}
-        folder:
-          - "e2e/bzlmod"
-          - "e2e/generate"
-        bzlmodEnabled: [true, false]
-        exclude:
-          # MacOS is expensive (billed at 10X) so don't test these
-          - os: macos-latest
-            folder: e2e/generate
-          - os: macos-latest
-            bazelversion: 5.4.0
-          # Don't test bzlmod with Bazel 5 (not supported)
-          - bazelversion: 5.4.0
-            bzlmodEnabled: true
-
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - name: Mount bazel caches
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/bazel
-            ~/.cache/bazel-repo
-          key: bazel-cache-${{ matrix.os }}-${{ matrix.folder }}-${{ hashFiles('**/BUILD.bazel', '**/*.bzl', 'WORKSPACE') }}
-          restore-keys: |
-            bazel-cache-${{ matrix.os }}-${{ matrix.folder }}
-            bazel-cache-${{ matrix.os }}
-            bazel-cache-
-
-      - name: Set bzlmod flag
-        # Store the --enable_bzlmod flag that we add to the test command below
-        # only when we're running bzlmod in our test matrix.
-        id: set_bzlmod_flag
-        if: matrix.bzlmodEnabled
-        run: echo "bzlmod_flag=--enable_bzlmod" >> $GITHUB_OUTPUT
-
-      - name: Configure Bazel version
-        working-directory: ${{ matrix.folder }}
-        run: echo "${{ matrix.bazelversion }}" > .bazelversion
-
-      - name: bazel test //...
-        working-directory: ${{ matrix.folder }}
-        env:
-          XDG_CACHE_HOME: ~/.cache/bazel-repo
-        run: bazel --bazelrc=$GITHUB_WORKSPACE/.github/workflows/ci.bazelrc --bazelrc=.bazelrc test ${{ steps.set_bzlmod_flag.outputs.bzlmod_flag }} //...
+    uses: bazel-contrib/.github/.github/workflows/bazel.yaml@v6
+    with:
+      folders: |
+        [
+          ".",
+          "e2e/smoke",
+          "e2e/grype_database_name",
+          "e2e/syft_sbom_deprecation",
+        ]
+      exclude: |
+        [
+          {"folder": ".", "bzlmodEnabled": false}
+        ]
+      exclude_windows: true

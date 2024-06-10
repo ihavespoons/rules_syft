@@ -1,0 +1,47 @@
+module(
+    name = "rules_syft_e2e_smoke",
+    version = "0.0.0",
+    compatibility_level = 1,
+)
+
+# Dependencies
+bazel_dep(name = "bazel_skylib", version = "1.6.1", dev_dependency = True)
+bazel_dep(name = "rules_oci", version = "1.7.5", dev_dependency = True)
+bazel_dep(name = "rules_syft", version = "0.0.0", dev_dependency = True)
+
+# Override for local testing
+local_path_override(
+    module_name = "rules_syft",
+    path = "../..",
+)
+
+# OCI
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "ubuntu",
+    digest = "sha256:c9cf959fd83770dfdefd8fb42cfef0761432af36a764c077aed54bbc5bb25368",
+    image = "docker.io/library/ubuntu",
+)
+use_repo(oci, "ubuntu")
+
+# Syft
+syft = use_extension("@rules_syft//syft:extensions.bzl", "syft")
+syft.toolchain()
+use_repo(syft, "syft_toolchains")
+
+register_toolchains("@syft_toolchains//:all")
+
+# Grype
+grype = use_extension("@rules_syft//grype:extensions.bzl", "grype")
+grype.toolchain()
+use_repo(grype, "grype_toolchains")
+
+register_toolchains("@grype_toolchains//:all")
+
+grype.database(
+    name = "my_grype_database",
+    sha256 = "96a5396fc536f1d239960a3719114d198a7e191485d5e87a5232c22dfc99cafb",
+    url = "https://toolbox-data.anchore.io/grype/databases/vulnerability-db_v5_2024-05-17T01:31:32Z_1716007601.tar.gz",
+    validate_age = False,
+)
+use_repo(grype, "my_grype_database")

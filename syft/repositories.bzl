@@ -33,9 +33,16 @@ def rules_syft_dependencies():
 ########
 # Remaining content of the file is only used to support toolchains.
 ########
+
+# Default base name for syft toolchain repositories by the module extension
+DEFAULT_SYFT_REPOSITORY = "syft"
+
+# Default toolchain version
+DEFAULT_SYFT_VERSION = TOOL_VERSIONS.keys()[-1]
+
 _DOC = "Fetch external tools needed for syft toolchain"
 _ATTRS = {
-    "syft_version": attr.string(mandatory = True, values = TOOL_VERSIONS.keys()),
+    "syft_version": attr.string(values = TOOL_VERSIONS.keys(), default = DEFAULT_SYFT_VERSION),
     "platform": attr.string(mandatory = True, values = PLATFORMS.keys()),
 }
 
@@ -71,7 +78,7 @@ syft_repositories = repository_rule(
 )
 
 # Wrapper macro around everything above, this is the primary API
-def syft_register_toolchains(name, register = True, **kwargs):
+def syft_register_toolchains(name = DEFAULT_SYFT_REPOSITORY, register = True, **kwargs):
     """Convenience macro for users which does typical setup.
 
     - create a repository for each built-in platform like "syft_linux_amd64" -

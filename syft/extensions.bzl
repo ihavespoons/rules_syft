@@ -10,23 +10,27 @@ names (the latest version will be picked for each name) and can register them as
 effectively overriding the default named toolchain due to toolchain resolution precedence.
 """
 
-load(":repositories.bzl", "syft_register_toolchains")
-
-_DEFAULT_NAME = "syft"
+load(":repositories.bzl", "DEFAULT_SYFT_REPOSITORY", "DEFAULT_SYFT_VERSION", "syft_register_toolchains")
 
 syft_toolchain = tag_class(attrs = {
-    "name": attr.string(doc = """\
+    "name": attr.string(
+        doc = """\
 Base name for generated repositories, allowing more than one syft toolchain to be registered.
 Overriding the default is only permitted in the root module.
-""", default = _DEFAULT_NAME),
-    "syft_version": attr.string(doc = "Explicit version of syft.", mandatory = True),
+""",
+        default = DEFAULT_SYFT_REPOSITORY,
+    ),
+    "syft_version": attr.string(
+        doc = "Explicit version of syft.",
+        default = DEFAULT_SYFT_VERSION,
+    ),
 })
 
 def _toolchain_extension(module_ctx):
     registrations = {}
     for mod in module_ctx.modules:
         for toolchain in mod.tags.toolchain:
-            if toolchain.name != _DEFAULT_NAME and not mod.is_root:
+            if toolchain.name != DEFAULT_SYFT_REPOSITORY and not mod.is_root:
                 fail("""\
                 Only the root module may override the default name for the syft toolchain.
                 This prevents conflicting registrations in the global namespace of external repos.
