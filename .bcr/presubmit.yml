@@ -11,4 +11,5 @@ bcr_test_module:
       platform: ${{ platform }}
       bazel: ${{ bazel }}
       test_targets:
-        - "//:smoke_test"
+        - "//e2e/smoke:smoke_test"
+        - "//e2e/grype_database_name:smoke_test"
