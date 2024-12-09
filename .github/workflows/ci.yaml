@@ -23,6 +23,7 @@ jobs:
       folders: |
         [
           ".",
+          "smoke"
         ]
       exclude: |
         [
