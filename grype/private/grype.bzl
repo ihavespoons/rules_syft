@@ -5,14 +5,14 @@ load("//grype:database.bzl", "GrypeDatabaseInfo")
 load("//grype/private:file_mappings.bzl", "FILE_MAPPINGS")
 load("//syft:providers.bzl", "SyftSbomInfo")
 
-_DOC_REPORT = """Generate CVE Report for an syft_generate_sbom using grype binary that is pulled as a toolchain.
+_DOC_REPORT = """Generate CVE Report for an syft_sbom using grype binary that is pulled as a toolchain.
 
 ```starlark
 oci_image(
     name = "image"
 )
 
-syft_generate_sbom(
+syft_sbom(
     name = "sbom",
     image = ":image"
 )
@@ -32,7 +32,7 @@ oci_image(
     name = "image"
 )
 
-syft_generate_sbom(
+syft_sbom(
     name = "sbom",
     image = ":image"
 )
@@ -207,7 +207,7 @@ def _grype_test_impl(ctx):
 
 _ATTRS_COMMON = {
     "sbom": attr.label(
-        doc = "Label to syft_generate_sbom",
+        doc = "Label to syft_sbom",
         mandatory = True,
         providers = [SyftSbomInfo],
     ),

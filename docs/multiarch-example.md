@@ -31,13 +31,13 @@ oci_tarball(
     repo_tags = []
 )
 
-syft_generate_sbom(
+syft_sbom(
     name = "generate_sbom_aws-cli_2_5_2_arm64",
     type = "cyclonedx-json",
     image = ":tarball_aws-cli_2_5_2_arm64"
 )
 
-syft_generate_sbom(
+syft_sbom(
     name = "generate_sbom_aws-cli_2_5_2_amd64",
     type = "cyclonedx-json",
     image = ":tarball_aws-cli_2_5_2_amd64"

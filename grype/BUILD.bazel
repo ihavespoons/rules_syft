@@ -52,3 +52,9 @@ bzl_library(
     srcs = ["toolchain.bzl"],
     visibility = ["//visibility:public"],
 )
+
+bzl_library(
+    name = "database",
+    srcs = ["database.bzl"],
+    visibility = ["//visibility:public"],
+)
