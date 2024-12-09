@@ -3,29 +3,23 @@
 load("//syft:providers.bzl", "SyftSbomInfo")
 load("//syft/private:file_mappings.bzl", "FILE_MAPPINGS")
 
-_DOC = """Generate SBOM for an oci_tarball or oci_image using syft binary that is pulled as a toolchain.
+_DOC = """Generate SBOM for an oci_image using syft binary that is pulled as a toolchain.
 
 ```starlark
 oci_image(
     name = "image"
 )
 
-oci_tarball(
-    name = "image_tarball",
-    image = ":image",
-    repo_tags = []
-)
-
 syft_sbom(
     name = "generate_sbom",
-    image = ":image_tarball"
+    image = ":image"
 )
 ```
 """
 
 _attrs = {
     "image": attr.label(
-        doc = "Label to an oci_tarball or oci_image directory",
+        doc = "Label to an oci_image directory",
         allow_single_file = True,
         mandatory = True,
     ),
@@ -52,7 +46,7 @@ output:
 
 def syft_sbom_impl(ctx):
     """
-    Implementation for generating SBOM for an oci_tarball or oci_image using syft binary that is pulled as a toolchain.
+    Implementation for generating SBOM for an oci_image using syft binary that is pulled as a toolchain.
 
     Args:
         ctx: action context

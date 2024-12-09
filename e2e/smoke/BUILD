@@ -1,17 +1,11 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
-load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
+load("@rules_oci//oci:defs.bzl", "oci_image")
 load("@rules_syft//grype:defs.bzl", "grype_report", "grype_test")
 load("@rules_syft//syft:defs.bzl", "syft_sbom")
 
 oci_image(
     name = "image",
     base = "@ubuntu",
-)
-
-oci_tarball(
-    name = "tarball",
-    image = ":image",
-    repo_tags = [],
 )
 
 syft_sbom(
@@ -22,11 +16,6 @@ syft_sbom(
 syft_sbom(
     name = "sbom_image",
     image = ":image",
-)
-
-syft_sbom(
-    name = "sbom_tarball",
-    image = ":tarball",
 )
 
 grype_report(
@@ -57,7 +46,6 @@ build_test(
     targets = [
         ":sbom_pulled",
         ":sbom_image",
-        ":sbom_tarball",
         ":cve_report_pulled",
         ":cve_test_pulled",
     ],

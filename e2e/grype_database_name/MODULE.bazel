@@ -5,8 +5,8 @@ module(
 )
 
 # Dependencies
-bazel_dep(name = "bazel_skylib", version = "1.6.1", dev_dependency = True)
-bazel_dep(name = "rules_oci", version = "1.7.5", dev_dependency = True)
+bazel_dep(name = "bazel_skylib", version = "1.7.1", dev_dependency = True)
+bazel_dep(name = "rules_oci", version = "2.0.1", dev_dependency = True)
 bazel_dep(name = "rules_syft", version = "0.0.0", dev_dependency = True)
 
 # Override for local testing

@@ -19,7 +19,7 @@ The public API is outlined below. It is currently barebones with more features b
 
 ## Syft
 
-- [syft_sbom](docs/syft_sbom.md) - Generate an SBOM from a provided tarball
+- [syft_sbom](docs/syft_sbom.md) - Generate an SBOM from a provided oci_image
 
 ## Grype
 - [grype_report](docs/grype_report.md) - Generate CVE Report for an syft_sbom using grype binary that is pulled as a toolchain.

@@ -19,27 +19,15 @@ oci_image(
     workdir = "/aws",
 )
 
-oci_tarball(
-    name = "tarball_aws-cli_2_5_2_amd64",
-    image = ":aws-cli_2_5_2_amd64",
-    repo_tags = []
-)
-
-oci_tarball(
-    name = "tarball_aws-cli_2_5_2_arm64",
-    image = ":aws-cli_2_5_2_arm64",
-    repo_tags = []
-)
-
 syft_sbom(
     name = "generate_sbom_aws-cli_2_5_2_arm64",
     type = "cyclonedx-json",
-    image = ":tarball_aws-cli_2_5_2_arm64"
+    image = ":aws-cli_2_5_2_arm64"
 )
 
 syft_sbom(
     name = "generate_sbom_aws-cli_2_5_2_amd64",
     type = "cyclonedx-json",
-    image = ":tarball_aws-cli_2_5_2_amd64"
+    image = ":aws-cli_2_5_2_amd64"
 )
 ```
