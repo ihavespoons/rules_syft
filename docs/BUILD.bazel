@@ -4,24 +4,24 @@ stardoc_with_diff_test(
     name = "syft_sbom",
     bzl_library_target = "//syft:defs",
     symbol_names = [
-        "syft_sbom"
-    ]
+        "syft_sbom",
+    ],
 )
 
 stardoc_with_diff_test(
     name = "grype_report",
     bzl_library_target = "//grype:defs",
     symbol_names = [
-        "grype_report"
-    ]
+        "grype_report",
+    ],
 )
 
 stardoc_with_diff_test(
     name = "grype_test",
     bzl_library_target = "//grype:defs",
     symbol_names = [
-        "grype_test"
-    ]
+        "grype_test",
+    ],
 )
 
 update_docs(
