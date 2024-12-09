@@ -11,8 +11,6 @@ load("@rules_syft//syft:defs.bzl", ...)
 ## syft_sbom
 
 <pre>
-load("@rules_syft//syft:defs.bzl", "syft_sbom")
-
 syft_sbom(<a href="#syft_sbom-name">name</a>, <a href="#syft_sbom-image">image</a>, <a href="#syft_sbom-scope">scope</a>)
 </pre>
 
