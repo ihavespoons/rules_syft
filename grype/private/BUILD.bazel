@@ -14,6 +14,9 @@ bzl_library(
     ],
     deps = [
         ":file_mappings",
+        "//grype:database",
+        "//syft:providers",
+        "@aspect_bazel_lib//lib:paths",
     ],
 )
 

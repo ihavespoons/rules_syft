@@ -1,6 +1,6 @@
 # Syft rules for [Bazel](https://bazel.build/)
 
-This project extends bazel with a toolchain for the use of the Syft commandline tool from Anchore
+This project extends bazel with a toolchain for the use of both the Syft and Grype toolchains from Anchore
 
 ## Setup
 
@@ -11,15 +11,19 @@ See the **WORKSPACE setup** section of the [current release][releases].
 # Design
 
 This ruleset was initially designed to add SBOM generation capability for [rules_oci](https://github.com/bazel-contrib/rules_oci).
-The ultimate aim is to support the entire featureset offered by syft as well as continuing to match it.
+It now supports both using Syft and Grype per the public API below
 
 # Usage and Public API
 
 The public API is outlined below. It is currently barebones with more features being added in the near future.
 
-## SBOM Generation
+## Syft
 
-- [syft_generate](docs/generate.md) - Generate an SBOM from a provided tarball
+- [syft_sbom](docs/syft_sbom.md) - Generate an SBOM from a provided tarball
+
+## Grype
+- [grype_report](docs/grype_report.md) - Generate CVE Report for an syft_sbom using grype binary that is pulled as a toolchain.
+- [grype_test](docs/grype_test.md) - Scans a SBOM for known vulnerabilities and fails if vulnerabilities are found that exceed a certain severity.
 
 ### SBOM Generation Examples
 
