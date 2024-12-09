@@ -22,7 +22,6 @@ jobs:
     with:
       folders: |
         [
-          ".",
           "smoke"
         ]
       exclude: |
