@@ -11,6 +11,8 @@ load("@rules_syft//grype:defs.bzl", ...)
 ## grype_report
 
 <pre>
+load("@rules_syft//grype:defs.bzl", "grype_report")
+
 grype_report(<a href="#grype_report-name">name</a>, <a href="#grype_report-database">database</a>, <a href="#grype_report-ignore_vulnerabilities">ignore_vulnerabilities</a>, <a href="#grype_report-only_fixed">only_fixed</a>, <a href="#grype_report-sbom">sbom</a>)
 </pre>
 
