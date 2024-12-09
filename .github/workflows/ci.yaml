@@ -23,7 +23,7 @@ jobs:
       folders: |
         [
           ".",
-          "smoke"
+          "e2e/smoke"
         ]
       exclude: |
         [
